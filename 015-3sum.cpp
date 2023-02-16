@@ -1,4 +1,4 @@
- Solution {
+Solution {
 public:
     void qsort(vector<int>& a, int L, int R)
     {
