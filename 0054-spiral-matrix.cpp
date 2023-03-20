@@ -4,6 +4,7 @@ public:
         vector<int> ans;
         int top = 0, bottom = matrix.size() - 1;
         int left = 0, right = matrix[0].size() - 1;
+        int matrixSize = matrix.size() * matrix[0].size();
 
         while (left <= right && top <= bottom) {
             for (int i = left; i <= right; ++i) {
@@ -16,7 +17,7 @@ public:
             }
             right--;
 
-            if (top > bottom || left > right)
+            if (ans.size() == matrixSize)
                 break;
 
             for (int i = right; i >= left; --i) {
