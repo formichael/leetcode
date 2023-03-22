@@ -7,13 +7,10 @@ public:
 
         while (right < s.size()) {
             auto chr = s[right];
-            if (dict[chr] == -1) {
-                dict[chr] = right;
-            } else {
+            if (dict[chr] != -1)
                 left = max(left, dict[chr] + 1);
-                dict[chr] = right;
-            }
 
+            dict[chr] = right;
             ans = max(ans, right - left + 1);
             ++right;
         }
