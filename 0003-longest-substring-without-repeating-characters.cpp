@@ -1,28 +1,23 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if (s.size() == 1) {
-            return 1;
-        }
-        
-        int maxSubLen = 0;
-        std::map<char, char> dict;
-        
-        for (int i = 0; i < s.size(); i++) {
-            for (int j = i; j < s.size(); j++) {
-                auto itr = dict.find(s[j]);
-                if (itr != dict.end()) {
-                    if (dict.size() > maxSubLen) {
-                        maxSubLen = dict.size();
-                    }
-                    dict.clear();
-                    break;
-                }
-                
-                dict[s[j]] = 1;
+        int ans = 0;
+        int left = 0, right = 0;
+        vector<int> dict(128, -1);
+
+        while (right < s.size()) {
+            auto chr = s[right];
+            if (dict[chr] == -1) {
+                dict[chr] = right;
+            } else {
+                left = max(left, dict[chr] + 1);
+                dict[chr] = right;
             }
+
+            ans = max(ans, right - left + 1);
+            ++right;
         }
-        
-        return maxSubLen;
+
+        return ans;
     }
 };
