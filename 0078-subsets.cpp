@@ -13,10 +13,12 @@ public:
             return;
         }
 
+        // decision to choose nums[idx]
         subset.push_back(nums[idx]);
         backtrack(nums, idx + 1, subset, ans);
-        subset.pop_back();
 
+        // decision to not choose nums[idx]
+        subset.pop_back();
         backtrack(nums, idx + 1, subset, ans);
     }
 };
